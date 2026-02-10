@@ -13,11 +13,25 @@
     <body>
         <main>
             <div class="grid">
+                <!--Turn indicator -->
                 <div class="turn">
                     <i class="fa-solid fa-x turqoise"></i>
                     <p>Player 1, you're up!</p>
                 </div>
-                <divc class="actions"></divc>
+
+                <!--Dropdown menu-->
+                <div class="menu">
+                    <button class="menu-btn" date-id="menu-button">
+                        Actions
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <!--<div class = "items border hidden" data-id="menu-popover">
+                        <button data-id="reset-btn">Reset</button>
+                        <button data-id="new-round-button">New Round</button>
+                    </div>-->
+                </div>
+
+                <!--Game board -->
                 <div class="square"></div>
                 <div class="square"></div>
                 <div class="square"></div>
@@ -27,6 +41,8 @@
                 <div class="square"></div>
                 <div class="square"></div>
                 <div class="square"></div>
+
+                <!--Game score-->
                 <div class="score"></div>
                 <div class="score"></div>
                 <div class="score"></div>
