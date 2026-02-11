@@ -43,10 +43,35 @@
                 <div class="square shadow"></div>
 
                 <!--Game score-->
-                <div class="score"></div>
-                <div class="score"></div>
-                <div class="score"></div>
+                <div
+                    class="score shadow"
+                    style="background-color: var(--turquoise)"
+                >
+                    <p>Player 1</p>
+                    <span data-id="player1-stats">0 wins</span>
+                </div>
+                <div
+                    class="score shadow"
+                    style="background-color: var(--light-gray)"
+                >
+                    <p>Ties</p>
+                    <span data-id="ties">0</span>
+                </div>
+                <div
+                    class="score shadow"
+                    style="background-color: var(--yellow)"
+                >
+                    <p>Player 2</p>
+                    <span data-id="player2-stats">0 wins</span>
+                </div>
             </div>
         </main>
+        <!--Modal opens when game is overg-->
+        <div class="modal">
+            <div class="modal-contents">
+                <p>Player 1 wins!</p>
+                <button>Play again</button>
+            </div>
+        </div>
     </body>
 </html>
