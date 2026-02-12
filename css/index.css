@@ -185,8 +185,8 @@ body {
 .modal {
     display: flex;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     justify-content: center;
@@ -196,10 +196,19 @@ body {
 }
 
 .modal-contents {
-    background-color: var(--dark-gray);
-    border-radius: 10px;
-    padding: 40px;
-    text-align: center;
+    transform: translateY(-80px);
+    height: 150px;
+    width: 100%;
+    max-width: 300px;
+    background-color: 2a4544;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    margin: 10px;
 }
 
 .modal-contents p {
