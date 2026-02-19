@@ -6,6 +6,11 @@ const App = {
     resetButton: document.querySelector("[data-id='reset-btn']"),
     newRoundButton: document.querySelector("[data-id='new-round-button']"),
     squares: document.querySelectorAll("[data-id='square-btn']"),
+    modal: document.querySelector("[data-id='modal']"),
+    modalText: document.querySelector("[data-id='modal-text']"),
+    modalBtn: document.querySelector("[data-id='modal-btn']"),
+    turnIcon: document.querySelector("[data-id='turn-icon']"),
+    turnText: document.querySelector("[data-id='turn-text']"),
   },
 
   state: {
@@ -60,6 +65,12 @@ const App = {
       console.log(event.target);
     });
 
+    App.$.modalBtn.addEventListener("click", (event) => {
+      App.state.moves = [];
+      App.$.squares.forEach((square) => square.replaceChildren());
+      App.$.modal.classList.add("hidden");
+    });
+
     // Squares
     App.$.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
@@ -77,10 +88,19 @@ const App = {
         // Update the square element and the current player state
         const currentPlayer = App.state.moves.length % 2 === 0 ? 1 : 2;
         const icon = document.createElement("i");
+        let turnMessage = "";
         if (currentPlayer == 1) {
           icon.classList.add("fa-solid", "fa-x", "yellow");
+          turnMessage = "Player 2, you're up!";
+          App.$.turnIcon.classList.replace("fa-x", "fa-o");
+          App.$.turnIcon.classList.replace("yellow", "turquoise");
+          App.$.turnText.classList.replace("yellow", "turquoise");
         } else {
           icon.classList.add("fa-solid", "fa-o", "turquoise");
+          turnMessage = "Player 1, you're up!";
+          App.$.turnIcon.classList.replace("fa-o", "fa-x");
+          App.$.turnIcon.classList.replace("turquoise", "yellow");
+          App.$.turnText.classList.replace("turquoise", "yellow");
         }
 
         App.state.moves.push({
@@ -90,12 +110,22 @@ const App = {
         squareElement.replaceChildren(icon);
 
         // Check if there is a winner or tie
-        const status = App.getGameStatus(App.state.moves);
-        console.log(status);
+        const game = App.getGameStatus(App.state.moves);
+        if (game.status === "complete") {
+          App.$.modal.classList.remove("hidden");
+          let message = "";
+          if (game.winner) {
+            message = `Player ${game.winner} wins!`;
+          } else {
+            message = "Game was tie!";
+          }
+
+          App.$.modalText.textContent = message;
+        }
       });
     });
   },
 };
 
 // Init all the event listeners and logic only after the windows has loaded
-window.addEventistener("load", App.init);
+window.addEventListener("load", App.init);
